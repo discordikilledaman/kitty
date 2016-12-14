@@ -13,3 +13,6 @@ Your regular crap bot you all know and love.
 
 # Notes
 - Please don't mind the unnecessary comments on some functions. They're just there to comply with the linters, who unironically ask you to purposely add docs for publicy exported stuff.
+
+# Credits
+- [iopred/bruxism](https://github.com/iopred/bruxism) (septapus) for some parts of the stat command and motivations.
