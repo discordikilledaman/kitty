@@ -1,0 +1,6 @@
+[required]
+token = "some_token"
+prefix = "some_prefix"
+
+[logging]
+file = "logs.log" # used for dumping data into a file instead of just stdout, this is optional
