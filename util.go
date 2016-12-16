@@ -16,8 +16,9 @@ import (
 // Config maps how a general kitty config should be.
 type Config struct {
 	Required struct {
-		Token  string
-		Prefix string
+		Token   string
+		Prefix  string
+		OwnerID string `toml:"owner_id"`
 	}
 	Logging struct {
 		File string
@@ -29,11 +30,11 @@ type Config struct {
 func GetConfig() Config {
 	file, err := ioutil.ReadFile("config.toml")
 	if err != nil {
-		log.Panicln("no config found, exiting....")
+		log.Panicf("no config found, exiting.... (%s)", err)
 	}
 	configData := Config{}
 	if err := toml.Unmarshal(file, &configData); err != nil {
-		log.Panicln("failed parsing toml, exiting....")
+		log.Panicf("failed parsing toml, exiting.... (%s)", err)
 	}
 	return configData
 }

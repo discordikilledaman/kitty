@@ -47,7 +47,7 @@ func (k *Kitty) Setup() {
 				k.Logger.Println(err)
 				return
 			}
-			if cmd.Checks().OwnerOnly && data.Author.ID != "110372470472613888" {
+			if cmd.Checks().OwnerOnly && data.Author.ID != k.Config.Required.OwnerID {
 				return
 			}
 			k.Logger.Printf("Author %s issued command %s", data.Author.Username, command)
