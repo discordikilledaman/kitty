@@ -32,6 +32,7 @@ func main() {
 		"sinfo":    &commands.Sinfo{},
 		"randoimg": &commands.RandoImg{},
 		"clean":    &commands.Clean{},
+		"sort":     &commands.Sort{},
 	}
 	listOfCommands["help"] = &commands.Help{Commands: listOfCommands}
 	kitty := kitty.New(logger, listOfCommands, conf, client)
