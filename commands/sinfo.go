@@ -45,11 +45,11 @@ func (Sinfo) Process(context kitty.Context) {
 			bots++
 		}
 	}
-	_, err = context.SayEmbed(&discordgo.MessageEmbed{
+	context.SayEmbed(&discordgo.MessageEmbed{
 		Title: "Information about **" + guild.Name + "**",
 		Fields: []*discordgo.MessageEmbedField{
 			kitty.Field("Owner", owner.User.Username),
-			kitty.Field("MemberCount", fmt.Sprintf("%d (bots %d)", guild.MemberCount, bots)),
+			kitty.Field("Member Count", fmt.Sprintf("%d (bots %d)", guild.MemberCount, bots)),
 			kitty.Field("Roles", fmt.Sprintf("%s (%d)", roles, len(guild.Roles))),
 			kitty.Field("Channels", fmt.Sprintf("%s (%d)", channels, len(guild.Channels))),
 		},
@@ -58,7 +58,4 @@ func (Sinfo) Process(context kitty.Context) {
 		},
 		Color: 45475,
 	})
-	if err != nil {
-		return
-	}
 }
