@@ -26,13 +26,14 @@ func main() {
 		logger.Panicln("failed creating an instance of discordgo:", err)
 	}
 	listOfCommands := map[string]kitty.Command{
-		"ping":     &commands.Ping{},
-		"stats":    &commands.Stats{},
-		"eval":     &commands.Eval{},
-		"sinfo":    &commands.Sinfo{},
-		"randoimg": &commands.RandoImg{},
-		"clean":    &commands.Clean{},
-		"sort":     &commands.Sort{},
+		"ping":        &commands.Ping{},
+		"stats":       &commands.Stats{},
+		"eval":        &commands.Eval{},
+		"sinfo":       &commands.Sinfo{},
+		"randoimg":    &commands.RandoImg{},
+		"clean":       &commands.Clean{},
+		"sort":        &commands.Sort{},
+		"randomarray": &commands.RandomArray{},
 	}
 	listOfCommands["help"] = &commands.Help{Commands: listOfCommands}
 	kitty := kitty.New(logger, listOfCommands, conf, client)
