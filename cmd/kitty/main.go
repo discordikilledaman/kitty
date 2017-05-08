@@ -47,6 +47,7 @@ func main() {
 		"cat":           commands.Cat{},
 		"ddg":           commands.Duckduckgo{},
 		"tag":           commands.Tag{},
+		"calc":          commands.Calc{},
 	}
 	listOfCommands["help"] = commands.Help{Commands: listOfCommands}
 	session.AddHandlerOnce(kitty.Ready(requestOfflineUsers)) // no need to listen for the READY event multiple times
