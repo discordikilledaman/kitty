@@ -1,10 +1,11 @@
 package commands
 
 import (
+	"fmt"
+	"os/exec"
 	"strings"
 
 	"github.com/acdenisSK/kitty"
-	sy "github.com/mgenware/go-shunting-yard"
 )
 
 // Calc f
@@ -20,22 +21,25 @@ func (Calc) Help() [2]string {
 
 // Process f
 func (Calc) Process(context kitty.Context) {
-	tokens, err := sy.Scan(strings.Join(context.Args, " "))
-	if err != nil {
-		context.Error(err)
-		return
+	input := strings.Join(context.Args, " ")
+	float := strings.Contains(input, "-f")
+	if float {
+		input = input[:strings.IndexAny(input, "-f")]
 	}
-	pftokens, err := sy.Parse(tokens)
-	if err != nil {
-		context.Error(err)
-		return
+
+	var cmd *exec.Cmd
+
+	if float {
+		cmd = exec.Command("shunt_yard", "-e", fmt.Sprintf("\"%s\"", input), "-f")
+	} else {
+		cmd = exec.Command("shunt_yard", "-e", fmt.Sprintf("\"%s\"", input))
 	}
-	res, err := sy.Evaluate(pftokens)
+	res, err := cmd.Output()
 	if err != nil {
 		context.Error(err)
 		return
 	}
 	e := kitty.NewEmbed("")
-	e.Fieldf("The result for your passed expression:", "%d", res)
+	e.Fieldf("The result for your passed expression:", "%s", string(res))
 	context.SayEmbed(e)
 }
